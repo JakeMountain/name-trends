@@ -1,3 +1,29 @@
+# A note from the human behind this project
+
+I've been batting around a theory for the past few years. It goes like this:
+
+(premise 1): Naming oneself or another human being is at least in part a matter of taste.
+(premise 2): Taste in names is like taste in music or fashion, and like those tastes it's largely established in one's teens and early 20s.
+(inference 1): People choose names that were in some meaningful way "determined" by their formative, taste-making period, even if they're chosen formally later on in life.
+(premise 3): On average, trans people legally transition (and therefore rename themselves) earlier than people have kids (and therefore name babies).
+(premise 4): Naming yourself is not meaningfully different than naming a baby, at least as far as picking a name goes.
+(premise 5): Trans people: they're just like us! The people changing their names in Ontario, Canada are similar enough to the people naming babies in Ontario, Canada. (Sometimes, they're the same people!)
+(inference 2): We're all just picking names from our personal taste pot when we name someone (ourselves or others). Trans people do it earlier, on average, than parents.
+(inference 3): People who reached the age of taste-maturity at similar times were issued similar personal-taste-pots, whether they are trans, parent, or trans-parent (tongue sticking out ghost emoji).
+(conclusion): Trends in trans naming are predictive of future baby name trends.
+
+Some obvious challenges can be made to this argument, like: 
+- Premise 4 is obviously wrong! I name myself with knowledge of who I am, where I am situated, and all that other junk, whereas a baby is just a blank slate upon which I project my hopes, dreams, and tasteful names. Sure. But there's an element of taste at play in both, and that's what I hope to capture. All that knowledge of who you are and where you're situated still has to collide with a set of acceptable names, and that set is at least partially an artifact of taste. 
+- Premise 2 is a vast oversimplification! My grandmother loves Yeat; her taste clearly wasn't set in her 20s! Good for grandma. My assertion is a population-level claim, and your sweet gran-gran is one of one. I still might be wrong, but at least w.r.t. music I've seen some good evidence for this.
+
+I had so much fun making this argument all the time, I was almost sad to see my hypothesis finally tested. But alas, claude is now good enough that I ran out of excuses. I told claude to research potential datasets to empirically analyze this problem, then took its findings and handed them to claude code, which promptly wrote and executed everything you see before you.
+
+There are challenges in the dataset as well as the analysis. I'll highlight two problems up here: transgender people can request for their name change to not be published in the Ontario Gazette (as of 2006, I think). Personally, I think that's great. It does, however, raise the issue that some unknown number of trans people are opted out of this dataset, and they may be correlated in ways that harm data quality -- e.g. perhaps younger trans people are more aware of this exemption, skewing the average age of transition name changes higher. The other problem is with the analysis: there's no box by each Gazette posting that says "this is a trans name change", and the technique I (fine, claude) came up with is rudimentary. We calculate the gender delta (that's right, the Gender Delta) between old and new first name using their prevalence in the Ontario baby names data set, and consider name changes "trans" when this delta is large (<=|0.7|). It's entirely possible this filter is missing huge swaths of gender-ambiguous names.
+
+Ultimately, the picture is fuzzy. I won't be publishing my findings in the American (or Canadian) Journal of Predictive Naming, at least not without some serious p-hacking. I'm not good enough at statistics, or even good enough at coaxing claude to be good at statistics, to analyze and understand this data adequately. There are however some graphs, and the name explorer is fun to play with. The site is up on github pages here: https://jakemountain.github.io/name-trends
+
+Every word that follows this section -- indeed, every other line in this project -- was written by claude. Thanks, claude.
+
 # Trans Name Changes → Baby Name Trends
 
 Do trans people function as early adopters of baby naming trends? This project tests the hypothesis that names chosen by trans people in legal name changes predict which names become popular for babies years later.
