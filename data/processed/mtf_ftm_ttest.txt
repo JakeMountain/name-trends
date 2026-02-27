@@ -1,0 +1,10 @@
+MTF vs FTM Lag Comparison
+========================================
+MTF (n=31): mean lag = 1.710
+FTM (n=36): mean lag = 0.778
+
+Welch t-test: t=1.2665, p=0.2108
+Mann-Whitney: U=618, p=0.4468
+
+Interpretation: p<0.05 means MTF and FTM show statistically
+different lead times, suggesting gender-direction matters.

@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Ontario Trans Name Trends</title>
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <link rel="stylesheet" href="css/style.css">
+  <!-- Plotly.js -->
+  <script src="https://cdn.plot.ly/plotly-2.35.2.min.js" charset="utf-8"></script>
+  <!-- marked.js for About tab -->
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+</head>
+<body>
+
+<!-- ═══════════════════════════════════════════════════════════ -->
+<!-- Sidebar                                                     -->
+<!-- ═══════════════════════════════════════════════════════════ -->
+<nav id="sidebar">
+  <div class="logo">
+    Ontario Trans<br>Name Trends
+    <small>2000–2024 Gazette Analysis</small>
+  </div>
+  <nav>
+    <ul>
+      <li><a href="#overview"  data-tab="overview"  class="active"><span class="nav-icon">📊</span> Overview</a></li>
+      <li><a href="#explorer"  data-tab="explorer" ><span class="nav-icon">🔍</span> Name Explorer</a></li>
+      <li><a href="#browse"    data-tab="browse"   ><span class="nav-icon">📋</span> Browse Names</a></li>
+      <li><a href="#charts"    data-tab="charts"   ><span class="nav-icon">📈</span> Visualizations</a></li>
+      <li><a href="#data"      data-tab="data"     ><span class="nav-icon">🗃</span> Data Table</a></li>
+      <li><a href="#about"     data-tab="about"    ><span class="nav-icon">📄</span> About</a></li>
+    </ul>
+  </nav>
+  <div class="sidebar-footer">
+    Ontario Gazette<br>+ Ontario Baby Names<br>
+    <a href="https://data.ontario.ca" target="_blank" style="color:var(--text-dim)">data.ontario.ca</a>
+  </div>
+</nav>
+
+<!-- ═══════════════════════════════════════════════════════════ -->
+<!-- Main content                                               -->
+<!-- ═══════════════════════════════════════════════════════════ -->
+<main id="content">
+
+  <!-- ─── Overview ─── -->
+  <div id="tab-overview" class="tab active">
+    <div class="page-header">
+      <h1>Trans Name Changes &amp; Baby Name Trends</h1>
+      <p>Do trans people function as cultural early adopters in naming? A study of 149,602 Ontario Gazette records (2000–2024).</p>
+    </div>
+    <div class="page-body">
+
+      <!-- Stat cards -->
+      <div class="stat-cards section-gap">
+        <div class="stat-card">
+          <div class="value" id="stat-total">—</div>
+          <div class="label">Records scored</div>
+        </div>
+        <div class="stat-card accent">
+          <div class="value" id="stat-trans">—</div>
+          <div class="label">Trans-coded (|δ|≥0.7)</div>
+        </div>
+        <div class="stat-card">
+          <div class="value" id="stat-mtf">—</div>
+          <div class="label">Female trans records</div>
+        </div>
+        <div class="stat-card">
+          <div class="value" id="stat-ftm">—</div>
+          <div class="label">Male trans records</div>
+        </div>
+        <div class="stat-card positive">
+          <div class="value" id="stat-lag">—</div>
+          <div class="label">Trans mean lag</div>
+        </div>
+        <div class="stat-card negative">
+          <div class="value" id="stat-curve">—</div>
+          <div class="label">Trans curve score</div>
+        </div>
+      </div>
+
+      <!-- Lag chart -->
+      <div class="chart-panel section-gap">
+        <h3>Mean cross-correlation lag by group</h3>
+        <p class="subtitle">Positive = name changes precede baby naming trends; negative = name changes follow trends</p>
+        <div id="overview-lag-chart" style="height:220px"></div>
+      </div>
+
+      <!-- Callout boxes -->
+      <div class="callouts section-gap">
+        <div class="callout finding">
+          <h3>Primary Finding</h3>
+          <p>
+            Across <em>all</em> gazette name changes, the mean lag is <em>−0.30 years</em> — people generally follow current naming trends.
+            But in the <em>trans-coded subset</em>, this flips to <em>+0.86 years</em>:
+            trans name changes appear in the gazette before those names peak in baby data.
+          </p>
+        </div>
+        <div class="callout caveat">
+          <h3>Important Caveat</h3>
+          <p>
+            The female trans positive lag (+1.71y) is likely a <em>statistical artifact</em>: trans women tend to choose
+            1970s–80s female names (JESSICA, JENNIFER) that were already declining. Two declining series can produce
+            a spurious lag. Granger causality tests are non-significant. See the About tab.
+          </p>
+        </div>
+      </div>
+
+      <!-- 5-year chunk table -->
+      <div class="chart-panel section-gap">
+        <h3>Curve score by era (trans-coded records)</h3>
+        <p class="subtitle">−1 = fully behind the curve, +1 = maximally ahead. All groups score negative (choosing past-peak names).</p>
+        <table style="width:100%;font-size:13px">
+          <thead>
+            <tr style="color:var(--text-muted);font-size:11px">
+              <th style="padding:6px 8px;text-align:left">Period</th>
+              <th style="padding:6px 8px;text-align:right">n records</th>
+              <th style="padding:6px 8px;text-align:right">All trans</th>
+              <th style="padding:6px 8px;text-align:right">Female</th>
+              <th style="padding:6px 8px;text-align:right">Male</th>
+            </tr>
+          </thead>
+          <tbody id="chunk-tbody"></tbody>
+        </table>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ─── Name Explorer ─── -->
+  <div id="tab-explorer" class="tab">
+    <div class="page-header">
+      <h1>Name Explorer</h1>
+      <p>Search any name to see its baby naming trend over time, gazette appearances, and curve score.</p>
+    </div>
+    <div class="page-body">
+
+      <div class="explorer-search">
+        <div class="search-wrap">
+          <input type="text" id="explorer-search" placeholder="Search a name (e.g. JESSICA, OLIVER)…" autocomplete="off">
+          <ul class="autocomplete-list" id="explorer-autocomplete"></ul>
+        </div>
+        <button class="btn" id="compare-toggle">+ Compare</button>
+        <div id="compare-wrap" class="hidden" style="display:flex;align-items:center;gap:8px">
+          <div class="search-wrap">
+            <input type="text" id="compare-search" placeholder="Compare with…" autocomplete="off">
+            <ul class="autocomplete-list" id="compare-autocomplete"></ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- Empty state -->
+      <div id="explorer-empty" class="explorer-empty">
+        <p>Search for a name above to explore its trend.</p>
+        <p class="text-dim" style="margin-top:8px;font-size:12px">Try: JESSICA · OLIVER · NOVA · KIMBERLEY · JOAN · KAI</p>
+      </div>
+
+      <!-- Content -->
+      <div id="explorer-content" class="hidden">
+        <div class="explorer-layout">
+          <div class="chart-panel">
+            <div id="explorer-chart" style="height:340px"></div>
+            <p class="subtitle" style="margin-top:8px">
+              Dashed vertical lines show gazette appearances —
+              <span style="color:#e45756">red = female name</span>,
+              <span style="color:#4c78a8">blue = male name</span>,
+              <span style="color:#5a6478">grey = neutral</span>
+            </p>
+          </div>
+
+          <div class="explorer-stats">
+            <div class="stat-block">
+              <h4>Curve Score</h4>
+              <div id="explorer-curve-score"></div>
+            </div>
+            <div class="stat-block">
+              <h4>Lag Correlation</h4>
+              <div id="explorer-lag"></div>
+            </div>
+            <div class="stat-block">
+              <h4>Gazette Appearances</h4>
+              <div id="explorer-count" style="font-size:12px;color:var(--text-muted);margin-bottom:8px"></div>
+              <ul class="gazette-list" id="explorer-gazette-list"></ul>
+              <p class="text-dim" style="font-size:11px;margin-top:6px">
+                Old names are not shown (privacy).
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Trans vs baby popularity chart -->
+        <div id="explorer-trans-chart-section" class="chart-panel hidden" style="margin-top:16px">
+          <div class="dual-range-container">
+            <div class="dual-range-labels">
+              <span>Year range: <strong id="trans-year-from-label">2000</strong> – <strong id="trans-year-to-label">2024</strong></span>
+            </div>
+            <div class="dual-range-wrap">
+              <div class="dual-range-track"><div class="dual-range-fill" id="trans-year-fill"></div></div>
+              <input type="range" id="trans-year-from" class="dual-range-input" min="2000" max="2024" value="2000" step="1">
+              <input type="range" id="trans-year-to"   class="dual-range-input" min="2000" max="2024" value="2024" step="1">
+            </div>
+          </div>
+          <div id="explorer-trans-chart" style="height:280px"></div>
+          <p class="subtitle" style="margin-top:6px">
+            Per 1,000 records, averaged over selected range.
+            <em><span id="explorer-trans-label">Trans</span></em>: share of all <span id="explorer-trans-label2"></span> gazette records choosing this name.
+            <em>Baby names</em>: average annual share of Ontario births.
+          </p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ─── Browse Names ─── -->
+  <div id="tab-browse" class="tab">
+    <div class="page-header">
+      <h1>Browse Names</h1>
+      <p>Explore all names from the gazette, filtered and sorted by curve score or count.</p>
+    </div>
+    <div class="page-body">
+
+      <div class="browse-filters">
+        <div class="filter-group">
+          <label>Direction</label>
+          <select id="browse-dir">
+            <option value="all">All directions</option>
+            <option value="mtf">Female names</option>
+            <option value="ftm">Male names</option>
+            <option value="trans">All trans</option>
+          </select>
+        </div>
+        <div class="filter-group">
+          <label>Sort by</label>
+          <select id="browse-sort">
+            <option value="curve_desc">Curve score ↓</option>
+            <option value="curve_asc">Curve score ↑</option>
+            <option value="count_desc">Count ↓</option>
+            <option value="alpha">Alphabetical</option>
+          </select>
+        </div>
+        <div class="filter-group">
+          <label>Min records</label>
+          <select id="browse-min">
+            <option value="1">Any</option>
+            <option value="2">≥ 2</option>
+            <option value="3" selected>≥ 3</option>
+            <option value="5">≥ 5</option>
+            <option value="10">≥ 10</option>
+            <option value="25">≥ 25</option>
+          </select>
+        </div>
+        <div class="filter-group">
+          <label>Search</label>
+          <input type="text" id="browse-search" placeholder="Filter names…" style="padding:6px 10px;background:var(--surface);border:1px solid var(--border);border-radius:4px;color:var(--text);font-size:13px;outline:none;width:160px">
+        </div>
+        <span class="text-muted" id="browse-count" style="font-size:12px;align-self:flex-end;padding-bottom:2px"></span>
+      </div>
+
+      <div class="name-grid" id="browse-grid"></div>
+      <button class="load-more" id="browse-loadmore" style="display:none">Load more</button>
+
+    </div>
+  </div>
+
+  <!-- ─── Visualizations ─── -->
+  <div id="tab-charts" class="tab">
+    <div class="viz-subnav">
+      <button class="active" data-panel="lag">Lag Explorer</button>
+      <button data-panel="curve">Curve Scores</button>
+      <button data-panel="dose">Dose Response</button>
+      <button data-panel="mtfftm">Female vs Male</button>
+      <button data-panel="pre2006">Pre/Post 2006</button>
+      <button data-panel="topnames">Top Names</button>
+    </div>
+
+    <!-- Lag Explorer -->
+    <div class="viz-panel active" id="viz-lag">
+      <div class="lag-controls">
+        <label>
+          Filter by threshold
+          <input type="range" id="lag-threshold" min="0" max="0.7" step="0.1" value="0">
+          <span id="lag-threshold-label">0.0</span>
+          (0 = all names, 0.7 = trans-coded only)
+        </label>
+        <input type="text" id="lag-search" placeholder="Highlight a name…">
+      </div>
+      <div class="chart-panel">
+        <p class="subtitle">Large dots = p&lt;0.05. Click a name to open in Name Explorer.</p>
+        <div id="viz-lag-chart" style="height:600px"></div>
+      </div>
+    </div>
+
+    <!-- Curve Scores -->
+    <div class="viz-panel" id="viz-curve">
+      <div class="chart-panel">
+        <h3>Curve score distributions by group</h3>
+        <div id="viz-curve-violin" style="height:320px"></div>
+      </div>
+      <div class="chart-panel">
+        <h3>Mean curve score over time (trans-coded records, 2000–2018)</h3>
+        <p class="subtitle">Dashed lines = female / male trans separately. Solid = all trans-coded.</p>
+        <div id="viz-curve-year" style="height:300px"></div>
+      </div>
+      <div class="chart-panel">
+        <h3>Curve score vs gender delta</h3>
+        <p class="subtitle">Coloured by 5-year era. Shows whether the trans signal is concentrated at high |δ|.</p>
+        <div id="viz-curve-scatter" style="height:420px"></div>
+      </div>
+    </div>
+
+    <!-- Dose Response -->
+    <div class="viz-panel" id="viz-dose">
+      <div class="chart-panel">
+        <h3>Mean lag vs gender delta threshold</h3>
+        <p class="subtitle">As we restrict to higher |δ| (more strongly trans-coded), how does the mean lag change?</p>
+        <div id="viz-dose-chart" style="height:340px"></div>
+      </div>
+    </div>
+
+    <!-- Female vs Male trans -->
+    <div class="viz-panel" id="viz-mtfftm">
+      <div class="chart-panel">
+        <h3>Lag distribution: female vs male trans names</h3>
+        <div id="viz-mtfftm-chart" style="height:340px"></div>
+        <div id="viz-mtfftm-stats" style="margin-top:12px;font-size:13px"></div>
+      </div>
+    </div>
+
+    <!-- Pre/Post 2006 -->
+    <div class="viz-panel" id="viz-pre2006">
+      <div class="chart-panel">
+        <h3>Lag distribution: pre vs post 2006 trans opt-out</h3>
+        <p class="subtitle">Since 2006, trans people can request non-publication in the Gazette, introducing systematic underrepresentation.</p>
+        <div id="viz-pre2006-chart" style="height:340px"></div>
+        <div id="viz-pre2006-stats" style="margin-top:12px;font-size:13px"></div>
+      </div>
+    </div>
+
+    <!-- Top Names -->
+    <div class="viz-panel" id="viz-topnames">
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px">
+        <div class="chart-panel">
+          <div id="viz-topnames-ahead" style="height:400px"></div>
+        </div>
+        <div class="chart-panel">
+          <div id="viz-topnames-behind" style="height:400px"></div>
+        </div>
+      </div>
+      <p class="text-muted" style="margin-top:8px;font-size:12px">
+        Click any bar to explore that name. Scores based on curve_score for trans-coded records with n≥3.
+      </p>
+    </div>
+
+  </div>
+
+  <!-- ─── Data Table ─── -->
+  <div id="tab-data" class="tab">
+    <div class="page-header">
+      <h1>Data Table</h1>
+      <p>All 72,013 scored name change records. Privacy: old names are not shown.</p>
+    </div>
+    <div class="page-body">
+
+      <div class="table-controls">
+        <input type="text" id="data-search" placeholder="Search by new name…">
+        <select id="data-dir">
+          <option value="all">All records</option>
+          <option value="mtf">Female name (δ≥+0.7)</option>
+          <option value="ftm">Male name (δ≤−0.7)</option>
+          <option value="nontrans">Non-trans (|δ|&lt;0.1)</option>
+        </select>
+        <button class="btn" id="data-csv">⬇ Download CSV</button>
+      </div>
+
+      <div class="table-wrap">
+        <table id="data-table">
+          <thead>
+            <tr>
+              <th data-col="n">New Name <span class="sort-arrow"></span></th>
+              <th data-col="y" class="sort-desc">Year <span class="sort-arrow"></span></th>
+              <th data-col="d">Gender Delta <span class="sort-arrow"></span></th>
+              <th data-col="cs">Curve Score <span class="sort-arrow"></span></th>
+            </tr>
+          </thead>
+          <tbody id="data-tbody"></tbody>
+        </table>
+        <div class="pagination">
+          <button id="data-prev">← Prev</button>
+          <span class="page-info" id="data-page-info"></span>
+          <button id="data-next">Next →</button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ─── About ─── -->
+  <div id="tab-about" class="tab">
+    <div class="page-header">
+      <h1>About This Project</h1>
+      <p>Research question, methodology, findings, and limitations.</p>
+    </div>
+    <div class="page-body">
+      <div class="about-prose" id="about-content">
+        <p class="text-muted">Loading report…</p>
+      </div>
+    </div>
+  </div>
+
+</main>
+
+<!-- Loading overlay -->
+<div id="loading-overlay">
+  <div class="loading-spinner"></div>
+  <div class="loading-msg" id="loading-msg">Loading data…</div>
+</div>
+
+<script type="module" src="js/main.js"></script>
+</body>
+</html>

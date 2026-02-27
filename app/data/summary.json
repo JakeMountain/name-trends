@@ -1,0 +1,72 @@
+{
+  "total_scored": 72013,
+  "trans_records": 9511,
+  "mtf_records": 4540,
+  "ftm_records": 4971,
+  "scrape_years": "2000\u20132024",
+  "gazette_issues": 1234,
+  "baby_name_years": "1913\u20132023",
+  "mean_lag_all": -0.11,
+  "mean_lag_trans": 0.581,
+  "mean_curve_all": -0.104,
+  "mean_curve_trans": -0.121,
+  "mean_curve_mtf": -0.137,
+  "mean_curve_ftm": -0.104,
+  "mean_curve_nontrans": -0.1,
+  "chunk_breakdown": [
+    {
+      "period": "2000\u201304",
+      "trans": -0.123,
+      "mtf": -0.145,
+      "ftm": -0.081,
+      "n": 279
+    },
+    {
+      "period": "2005\u201309",
+      "trans": -0.14,
+      "mtf": -0.159,
+      "ftm": -0.117,
+      "n": 1485
+    },
+    {
+      "period": "2010\u201314",
+      "trans": -0.132,
+      "mtf": -0.142,
+      "ftm": -0.12,
+      "n": 1667
+    },
+    {
+      "period": "2015\u201318",
+      "trans": -0.095,
+      "mtf": -0.107,
+      "ftm": -0.084,
+      "n": 1716
+    }
+  ],
+  "top_ahead_names": [
+    "JOAN",
+    "JUNE",
+    "LORI",
+    "BO",
+    "NOVA",
+    "JULES",
+    "KRIS",
+    "MILO",
+    "SHEILA",
+    "LEONARDO"
+  ],
+  "top_behind_names": [
+    "MEI",
+    "OLGA",
+    "SEYED",
+    "SHELLY",
+    "YAN",
+    "KIMBERLEY",
+    "KIM",
+    "ALEXEI",
+    "PAMELA",
+    "AMAN"
+  ],
+  "mean_lag_mtf": 0.64,
+  "mean_lag_ftm": 0.412
+}

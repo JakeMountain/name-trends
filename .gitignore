@@ -1,0 +1,43 @@
+# Virtual environment
+.venv/
+venv/
+ENV/
+
+# Cached PDFs (1.9 GB — regenerable via scripts/scrape.py, takes ~3 hrs)
+gazette_pdfs/
+
+# Raw source data
+# Privacy: ontario_name_changes.csv contains old first names (deadnames for trans people)
+# Baby name CSVs are public but large and regenerable via scripts/download_baby_names.py
+data/raw/
+
+# Regenerable analysis outputs (reproduce via scripts/analyze.py + scripts/visualize.py)
+data/processed/*.csv
+data/processed/*.png
+# Keep key statistical result files
+!data/processed/granger_causality.csv
+
+# Legacy directories (superseded by data/processed/ and app/ respectively)
+results/
+viz/
+
+# Python artifacts
+__pycache__/
+*.pyc
+*.pyo
+*.egg-info/
+.pytest_cache/
+dist/
+build/
+
+# IDE / OS
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+
+# Runtime artifacts
+*.log
+
+# Claude Code metadata
+.claude/

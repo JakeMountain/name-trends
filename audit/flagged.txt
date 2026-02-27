@@ -1,0 +1,8 @@
+Years with avg < 20 records/issue (but section present):
+
+  2004 — sample zero-yield PDFs:
+    gazette_pdfs/gazette_v137_i2.pdf
+    gazette_pdfs/gazette_v137_i48.pdf
+
+To inspect a flagged PDF:
+  python -c "import pdfplumber; pdf=pdfplumber.open('PATH'); print(pdf.pages[0].extract_text()[:3000])"

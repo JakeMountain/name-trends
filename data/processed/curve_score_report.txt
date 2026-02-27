@@ -1,0 +1,63 @@
+CURVE SCORE REPORT
+============================================================
+Window: +/-5 years around each name change
+Period: 2000-2018 (full window guaranteed)
+Score: +1 = maximally ahead of trend, -1 = maximally behind
+
+GROUP MEANS
+----------------------------------------
+All records                          n=31109  mean=-0.104  median=-0.125  p=0.0000 (***)
+Likely-trans |d|>=0.7                n= 5147  mean=-0.121  median=-0.140  p=0.0000 (***)
+  MTF (d>=+0.7)                      n= 2725  mean=-0.137  median=-0.162  p=0.0000 (***)
+  FTM (d<=-0.7)                      n= 2422  mean=-0.104  median=-0.122  p=0.0000 (***)
+Non-trans |d|<0.1                    n=11028  mean=-0.100  median=-0.120  p=0.0000 (***)
+
+TIME TREND (likely-trans)
+----------------------------------------
+Linear slope: +0.0024 per year  (p=0.2613)
+Interpretation: Trans name choices are increasing in 'ahead-of-curve'
+score over 2000-2018, suggesting trans people are becoming
+MORE trend-setting over time.
+
+5-YEAR CHUNK BREAKDOWN (likely-trans mean curve score)
+----------------------------------------
+2000-04:  trans=-0.123  MTF=-0.145  FTM=-0.081  (n_trans=279, n_mtf=183, n_ftm=96)
+2005-09:  trans=-0.140  MTF=-0.159  FTM=-0.117  (n_trans=1485, n_mtf=818, n_ftm=667)
+2010-14:  trans=-0.132  MTF=-0.142  FTM=-0.120  (n_trans=1667, n_mtf=907, n_ftm=760)
+2015-18:  trans=-0.095  MTF=-0.107  FTM=-0.084  (n_trans=1716, n_mtf=817, n_ftm=899)
+
+TOP 15 MOST AHEAD-OF-CURVE NAMES (trans set, n>=3)
+----------------------------------------
+  JOAN            mean=+1.000  n=3
+  JUNE            mean=+0.882  n=3
+  LORI            mean=+0.669  n=5
+  BO              mean=+0.664  n=3
+  NOVA            mean=+0.647  n=3
+  JULES           mean=+0.616  n=3
+  KRIS            mean=+0.490  n=4
+  MILO            mean=+0.439  n=3
+  SHEILA          mean=+0.414  n=4
+  LEONARDO        mean=+0.407  n=3
+  LOUISE          mean=+0.373  n=5
+  CELINE          mean=+0.367  n=6
+  PEARL           mean=+0.352  n=3
+  LILIANA         mean=+0.348  n=3
+  HENRY           mean=+0.345  n=3
+
+TOP 15 MOST BEHIND-CURVE NAMES (trans set, n>=3)
+----------------------------------------
+  HAO             mean=-0.646  n=3
+  MICHELE         mean=-0.665  n=3
+  STACY           mean=-0.666  n=3
+  KIRSTEN         mean=-0.678  n=3
+  DON             mean=-0.704  n=3
+  AMAN            mean=-0.709  n=3
+  PAMELA          mean=-0.775  n=8
+  ALEXEI          mean=-0.802  n=3
+  KIM             mean=-0.836  n=4
+  KIMBERLEY       mean=-0.926  n=5
+  YAN             mean=-1.000  n=3
+  OLGA            mean=-1.000  n=5
+  MEI             mean=-1.000  n=3
+  SEYED           mean=-1.000  n=7
+  SHELLY          mean=-1.000  n=3
