@@ -2,15 +2,15 @@
 
 I've been batting around a theory for the past few years. It goes like this:
 
-> **Premise 1:** Naming oneself or another human being is at least in part a matter of taste.
-> **Premise 2:** Taste in names is like taste in music or fashion, and like those tastes it's largely established in one's teens and early 20s.
-> **Inference 1:** People choose names that were in some meaningful way "determined" by their formative, taste-making period, even if they're chosen formally later on in life.
-> **Premise 3:** On average, trans people legally transition (and therefore rename themselves) earlier than people have kids (and therefore name babies).
-> **Premise 4:** Naming yourself is not meaningfully different than naming a baby, at least as far as picking a name goes.
-> **Premise 5:** Trans people: they're just like us! The people changing their names in Ontario, Canada are similar enough to the people naming babies in Ontario, Canada. (Sometimes, they're the same people!)
-> **Inference 2:** We're all just picking names from our personal taste pot when we name someone (ourselves or others). Trans people do it earlier, on average, than parents.
-> **Inference 3:** People who reached the age of taste-maturity at similar times were issued similar personal-taste-pots, whether they are trans, parent, or trans-parent. 👻
-> **Conclusion:** Trends in trans naming are predictive of future baby name trends.
+- **Premise 1:** Naming oneself or another human being is at least in part a matter of taste.
+- **Premise 2:** Taste in names is like taste in music or fashion, and like those tastes it's largely established in one's teens and early 20s.
+- **Inference 1:** People choose names that were in some meaningful way "determined" by their formative, taste-making period, even if they're chosen formally later on in life.
+- **Premise 3:** On average, trans people legally transition (and therefore rename themselves) earlier than people have kids (and therefore name babies).
+- **Premise 4:** Naming yourself is not meaningfully different than naming a baby, at least as far as picking a name goes.
+- **Premise 5:** Trans people: they're just like us! The people changing their names in Ontario, Canada are similar enough to the people naming babies in Ontario, Canada. (Sometimes, they're the same people!)
+- **Inference 2:** We're all just picking names from our personal taste pot when we name someone (ourselves or others). Trans people do it earlier, on average, than parents.
+- **Inference 3:** People who reached the age of taste-maturity at similar times were issued similar personal-taste-pots, whether they are trans, parent, or trans-parent. 👻
+- **Conclusion:** Trends in trans naming are predictive of future baby name trends.
 
 Some obvious challenges can be made to this argument, like:
 
