@@ -56,8 +56,7 @@ babynames/
 │   └── data/                   ← pre-generated JSON (from export_web_data.py)
 │
 ├── docs/
-│   ├── REPORT.md               ← research findings + limitations
-│   └── WEBAPP_SPEC.md          ← web app design document
+│   └── REPORT.md               ← research findings + limitations
 │
 ├── audit/                      ← parser audit outputs
 ├── gazette_pdfs/               ← 1,234 cached PDFs (DO NOT DELETE — gitignored)

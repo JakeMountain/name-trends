@@ -99,8 +99,7 @@ babynames/
 │   ├── js/                       ← main.js, charts.js, data.js, explorer.js
 │   └── data/                     ← Pre-computed JSON (safe to publish)
 ├── docs/
-│   ├── REPORT.md                 ← Full research report
-│   └── WEBAPP_SPEC.md            ← Web app design notes
+│   └── REPORT.md                 ← Full research report
 ├── audit/                        ← Parser yield diagnostics
 ├── data/
 │   ├── raw/                      ← gitignored (privacy + size)
