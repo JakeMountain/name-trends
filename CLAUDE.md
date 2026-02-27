@@ -60,8 +60,7 @@ babynames/
 │   └── WEBAPP_SPEC.md          ← web app design document
 │
 ├── audit/                      ← parser audit outputs
-├── gazette_pdfs/               ← 1,234 cached PDFs (DO NOT DELETE)
-├── viz/                        ← legacy standalone Plotly HTMLs
+├── gazette_pdfs/               ← 1,234 cached PDFs (DO NOT DELETE — gitignored)
 ├── CLAUDE.md
 └── requirements.txt
 ```
@@ -113,13 +112,13 @@ python scripts/analyze.py \
     -o data/processed/ \
     --thresholds 0.2,0.5,0.7
 
-# 4. Generate standalone Plotly HTML visualizations (legacy)
+# 4. Generate standalone Plotly HTML visualizations (optional, legacy static charts)
 python scripts/visualize.py \
     -n data/raw/ontario_name_changes.csv \
     -f data/raw/ontario_baby_names_female.csv \
     -m data/raw/ontario_baby_names_male.csv \
     -r data/processed/ \
-    -o viz/
+    -o viz/         # output dir — create manually if needed
 
 # 5. Run tests
 python scripts/tests/test_curve_scores.py
@@ -140,15 +139,16 @@ python scripts/export_web_data.py \
 
 | Metric | Value |
 |---|---|
-| All name changes mean lag | −0.30 years (gazette lags baby trends) |
-| Likely-trans mean lag | **+0.86 years** ← trans filter flips the sign |
-| MTF mean lag | +1.71y (likely artifact — see REPORT.md §5.2) |
-| FTM mean lag | +0.78y |
-| MTF vs FTM t-test | p=0.21 (not significant) |
+| Total name change records | 72,013 |
+| Trans-coded records (&#124;δ&#124; ≥ 0.7) | 9,511 (4,540 female / 4,971 male) |
+| All name changes mean lag | −0.11 years |
+| Likely-trans mean lag | **+0.58 years** ← trans filter flips the sign |
+| MTF mean lag | +0.64y (likely artifact — see REPORT.md §5.2) |
+| FTM mean lag | +0.41y |
 | Granger causality | Non-significant at all lags 1–5 |
 | Curve score (all) | −0.104 (everyone is somewhat behind the curve) |
 | Curve score (trans) | −0.121 |
-| Time trend | +0.0024/yr (p=0.26, not significant) |
+| Curve score (MTF) | −0.137 |
 
 ---
 
