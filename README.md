@@ -12,7 +12,7 @@ I've been batting around a theory for the past few years. It goes like this:
   - **Inference 3:** People who reached the age of taste-maturity at similar times were issued similar personal-taste-pots, whether they are trans, parent, or trans-parent. 👻
 - **Conclusion:** Trends in trans naming are predictive of future baby name trends.
 
-Some obvious challenges can be made to this argument, like:
+Some challenges can be leveled against this argument, like:
 
 - "**Premise 4 is obviously wrong!** I name myself with knowledge of who I am, where I am situated, and all that other junk, whereas a baby is just a blank slate upon which I project my hopes, dreams, and tasteful names." Sure. But there's an element of taste at play in both, and that's what I hope to capture. All that knowledge of who you are and where you're situated still has to collide with a set of acceptable names, and that set is at least partially an artifact of taste.
 - "**Premise 2 is a vast oversimplification!** My grandmother loves Yeat and Playboi Carti; her taste clearly wasn't set in her 20s!" Good for grandma. My assertion is a population-level claim, and your sweet gran-gran is one of one. I still might be wrong, but at least w.r.t. music I've seen some good evidence for this.
